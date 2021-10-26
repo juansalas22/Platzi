@@ -1,0 +1,66 @@
+//Struct y manejo de archivos
+
+
+#include <stdio.h>
+
+struct datosPersonales
+{
+	char nombre[20];
+	char apellido[20];
+	char sexo;
+	int edad;
+};
+
+int main(void)
+{
+    printf("Archivos - Leer un archivo. \n\n");
+	FILE *archivo;
+
+	struct datosPersonales persona;
+	archivo = fopen("DatosPersonales001.dat", "rb");
+
+	if (archivo != NULL)
+    {
+		fread(&persona, sizeof(persona), 1, archivo);
+
+		printf("Imprimir los datos. \n\n");
+        printf("Nombre: %s \n", persona.nombre);
+        printf("Apellido: %s \n", persona.apellido);
+        printf("Sexo: %c \n", persona.sexo);
+        printf("Edad: %d \n", persona.edad);
+
+		fclose(archivo);
+	}
+	else
+    {
+        printf("No se ha podido abrir el archivo. \n");
+    }
+}
+
+
+//creacion de archivos
+
+#include <stdio.h>
+
+int main(void)
+{
+    printf("Archivos - Crear un archivo. \n\n");
+
+	// Declaramos la variable file como puntero del tipo FILE.
+	FILE *archivo;
+
+	// Creamos archivo001.dat y guardamos su direccion en el apuntador "archivo".
+	archivo = fopen("archivo001.dat", "w");
+
+    if(archivo != NULL)
+    {
+        printf("El archivo se ha creado exitosamente. Comprueba en la carpeta que ha sido creado.\n");
+        fclose(archivo);
+    }
+    else
+    {
+        printf("El archivo no se ha creado.\n");
+    }
+
+    return 0;
+}
